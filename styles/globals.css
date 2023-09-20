@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+
+
+.table_row{
+  display: flex;
+  flex-direction: row;
+}
+
+.table_row > th{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px !important;
+  border: 2px solid black
+}
+
+.values{
+  display: flex;
+  flex-direction: row;
+  /* border: 1px solid gray; */
+}
+
+.values > td{
+  height: 5vh; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  border: 1px solid gray;
+}
+
+.input_field{
+  border: 1px solid black ;
+  border-radius: 5px;
+}
+
+.input_field:focus{
+  outline: none;
+}
+
+#react-select-3-listbox{
+   display: fixed;
+   z-index: 10000 !important;
+}
