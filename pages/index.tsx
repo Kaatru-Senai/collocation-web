@@ -12,7 +12,7 @@ import {defaultParameters} from '../data/deviceList';
 import Logo from '../public/logo.png';
 import Link from 'next/link';
 import makeAnimated from 'react-select/animated';
-import { Modal } from 'antd';
+import { Modal, Tooltip , Spin } from 'antd';
 import {FcNext, FcPrevious} from 'react-icons/fc';
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -66,6 +66,7 @@ const parameterOptions = [
 ]
 
 export default function Home() {
+  const [isLoading , setIsLoading] = useState(true);
   const [activeButton,setActiveButton] = useState(0);
   const [filteredData,setFilteredData] = useState<{
     status: boolean;dID:string;value:null;lts:number;
@@ -73,6 +74,7 @@ export default function Home() {
   type ParameterOption = {
     value: string;
     label: string;
+    desc: string;
   };
   const [parameters,SetParameters]=useState<ParameterOption[]>(defaultParameters);
   // console.log("the parameters that has been selected are ",parameters)
@@ -218,7 +220,7 @@ const parametersRef = useRef<Select | null>(null);
     },
     onMessage: (response) => {
       const mes = JSON.parse(response.data);
-      // console.log(mes);
+      console.log(mes);
       data.map((item)=>{
         if(item.dID==mes.dID){
           item.value=mes;
@@ -232,6 +234,9 @@ const parametersRef = useRef<Select | null>(null);
   // console.log(data);
   useEffect(()=>{
     setCurrentPage(data?.slice(0,15));
+    setTimeout(()=>{
+      setIsLoading(false);
+    },5000)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
   useEffect(() => {
@@ -410,14 +415,18 @@ const parametersRef = useRef<Select | null>(null);
   console.log(searchedDevices);
   setCurrentPage(searchedDevices);
  }
+
+
   console.log("the currentpage data is ",currentPage);
   return (
     <main
       className={`flex min-h-screen flex-col items-center justify-start ${inter.className}`}
     >
+      
       <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} okText={"Apply"} onCancel={handleCancel} okButtonProps={{style:{backgroundColor:'blue'}}}>
         <h2>Select the Fields You Need:-</h2>
         <Select
+        styles={{ menuPortal: base => ({ ...base, zIndex: 9999 }) }}
       closeMenuOnSelect={false}
       components={animatedComponents}
       isMulti
@@ -427,6 +436,7 @@ const parametersRef = useRef<Select | null>(null);
       // ref={parametersRef}
     />
       </Modal>
+      
       <div className="h-[50px] w-full fixed flex justify-between items-center border-b-2">
         <div className="flex flex-row gap-[15%]">
             <Image src={Logo} alt="" width={110}/>
@@ -455,6 +465,7 @@ const parametersRef = useRef<Select | null>(null);
         </div> 
       </div>
     </div>
+    
       <div className="w-full flex flex-row justify-between gap-4 fixed mt-[60px] z-[1]"> 
         <div className="basis-[100%] w-full flex flex-row gap-4 mx-2 text-white">
           <div className="basis-[33.3%] bg-slate-400 h-[12vh] rounded-md flex flex-col justify-evenly">
@@ -487,6 +498,7 @@ const parametersRef = useRef<Select | null>(null);
         </div>
       </div>
       <div className="w-full h-full mt-[21vh]">
+      <Spin tip="Loading..." spinning={isLoading}>
         <table>
           <tbody>
           <tr className='table_row'>
@@ -494,11 +506,12 @@ const parametersRef = useRef<Select | null>(null);
           <th className='ml-[104px]'>pID</th>  
             {parameters.map((item)=>{
               return(
-                <th key={item.value}>{item?.value}</th> 
+                <Tooltip title={item?.desc} key={item.value}>
+                  <th key={item.value}>{item?.value}</th> 
+                </Tooltip>
               )
             })}
-          </tr> 
-          
+          </tr>   
             {currentPage.map((item)=>{
               return (
                 <tr key={item.dID} className={`values`}>
@@ -555,7 +568,9 @@ const parametersRef = useRef<Select | null>(null);
           
           </tbody>
         </table>    
+        </Spin>
       </div>
+      
       <ToastContainer />
     </main>
   )
