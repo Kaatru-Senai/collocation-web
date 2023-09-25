@@ -1,3 +1,12 @@
+export const coloc4Devices = [
+    { dID: 'S39', value: null ,lts: 0 ,status:false },
+    { dID: 'S37', value: null ,lts: 0 ,status:false },
+    { dID: 'S23', value: null ,lts: 0 ,status:false },
+    { dID: 'S29', value: null ,lts: 0 ,status:false },
+    { dID: 'S27', value: null ,lts: 0 ,status:false },
+    { dID: 'S36', value: null ,lts: 0 ,status:false },   
+]
+
 export const deviceList = [
     { dID: 'SG1', value: null ,lts: 0 ,status:false },
     { dID: 'SG2', value: null ,lts: 0 ,status:false },
