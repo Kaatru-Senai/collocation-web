@@ -12,7 +12,15 @@ import {
   Tooltip,
   Legend,
 } from 'recharts';
+
+// Try to do the following (using rechart's types).
+
+import { TooltipProps } from 'recharts';
 import SearchIcon from '../public/icons8-search.svg';
+import {
+  ValueType,
+  NameType,
+} from 'recharts/types/component/DefaultTooltipContent';
 import {Spin} from 'antd';
 import Logo from '../public/logo.png';
 import Link from 'next/link';
@@ -339,13 +347,13 @@ function Charts() {
   //   getChartData(e.target.value);x
   //   setIsChartLoading(true);
   // };
-  const allSrvtimeValues = chartData.reduce((acc:any, set:any) => {
-    return acc.concat(set.data.map((item:any) => item.srvtime));
-  }, []);
+  // const allSrvtimeValues = chartData.reduce((acc:any, set:any) => {
+  //   return acc.concat(set.data.map((item:any) => item.srvtime));
+  // }, []);
 
   // Calculate the minimum and maximum srvtime values
-  const minSrvtime = Math.min(...allSrvtimeValues);
-  const maxSrvtime = Math.max(...allSrvtimeValues);
+  // const minSrvtime = Math.min(...allSrvtimeValues);
+  // const maxSrvtime = Math.max(...allSrvtimeValues);
   const getChartData = async (time:string,devices:Array<string> | undefined) => {
     try {
       if (time == undefined) {
@@ -383,6 +391,8 @@ function Charts() {
       }
       console.log(reqData);
       reqData.data.map((item:any) => {
+        console.log(item);
+        if(item.data.length>0){
         item.data.map((item1:any) => {
           let timeStamps;
           if (true) {
@@ -406,7 +416,7 @@ function Charts() {
           } else {
             item1.x_axis = finalTime;
           }}
-        });
+        });}
       });
 
       const averageMinsPM1:any[number] = [];
@@ -423,18 +433,21 @@ function Charts() {
       const averageMaxRh:any[number] = [];
       reqData?.data.map((item:any) => {
         console.log('the item is here' + item);
-        averageMinsPM1.push(item.min.sPM1);
-        averageMinsPM2.push(item.min.sPM2);
-        averageMinsPM4.push(item.min.sPM4);
-        averageMinsPM10.push(item.min.sPM10);
-        averageMinTemp.push(item.min.temp);
-        averageMinRh.push(item.min.rh);
-        averageMaxsPM1.push(item.max.sPM1);
-        averageMaxsPM2.push(item.max.sPM2);
-        averageMaxsPM10.push(item.max.sPM10);
-        averageMaxsPM4.push(item.max.sPM4);
-        averageMaxTemp.push(item.max.temp);
-        averageMaxRh.push(item.max.rh);
+        if(item.min){
+          averageMinsPM1.push(item.min.sPM1);
+          averageMinsPM2.push(item.min.sPM2);
+          averageMinsPM4.push(item.min.sPM4);
+          averageMinsPM10.push(item.min.sPM10);
+          averageMinTemp.push(item.min.temp);
+          averageMinRh.push(item.min.rh);
+          averageMaxsPM1.push(item.max.sPM1);
+          averageMaxsPM2.push(item.max.sPM2);
+          averageMaxsPM10.push(item.max.sPM10);
+          averageMaxsPM4.push(item.max.sPM4);
+          averageMaxTemp.push(item.max.temp);
+          averageMaxRh.push(item.max.rh);
+        }
+       
       });
 
       const finalObj = {
@@ -547,6 +560,48 @@ function Charts() {
     getChartData(e.target.value,selectedDevices);
     setIsChartLoading(true);
   };
+  interface CustomTooltipProps {
+    active: boolean;
+    payload: any[]; // You can replace 'any[]' with a more specific type if necessary
+    label: string;
+  }
+  
+  // const CustomTooltip:React.FC<CustomTooltipProps> = ({ active, payload, label }) => {
+  //   if (active && payload && payload.length) {
+  //     // console.log(payload);
+  //     const event = new Date(label);
+  //     const dateOnly = event.toString().split("G");
+  //     // console.log(dateOnly[0]);
+  //     return (
+        
+  //     );
+  //   }
+  
+  //   return null;
+  // };
+
+  const CustomTooltip = ({
+    active,
+    payload,
+    label,
+}: TooltipProps<ValueType, NameType>) => {
+      const event = new Date(label);
+      const dateOnly = event.toString().split("G");
+      // console.log(payload[0]?.value);
+    if (active && payload) {
+      console.log(payload[0].payload.dID);
+    return (
+      <div className="bg-white border-2 border-black p-2">
+        <p>{payload[0].payload.dID}</p>
+      <p className="label">{`${dateOnly[0]}`}</p>
+      <p>{`${payload[0].value}`}</p>
+    </div>
+    );
+    }
+
+    return null;
+};
+  
   useEffect(()=>{
     
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -564,7 +619,7 @@ function Charts() {
           {/* <Image src={SearchIcon} alt="" className='absolute right-16 cursor-pointer top-1' width={30} onClick={searchDevices}/> */}
           <GrLinkNext className='absolute right-20 cursor-pointer top-1 w-10' onClick={searchDevices}/>
         </div>
-        <div className="grid grid-cols-10 w-full gap-4 mt-4">
+        {/* <div className="grid grid-cols-10 w-full gap-4 mt-4">
           {alldeviceList.map((item)=>{
             return (
               <div key={item.dID} className={`w-full h-[10vh] bg-black rounded-md cursor-pointer`} onClick={()=>{if (inputRef?.current) {
@@ -573,7 +628,7 @@ function Charts() {
               </div>
             )
           })}
-        </div>
+        </div> */}
       </Modal>
       <Modal title="Select Multiple Device" open={isMultipleModalOpen} onOk={handleMultipleOk} onCancel={handleMultipleCancel} width={1000}>
         <p>Devices</p>
@@ -620,12 +675,21 @@ function Charts() {
                         value={timeFrame}
                         onChange={ChangeTimeFrame}
                       >
-                        <option selected value="15M">
-                        15 Minutes
+                        <option selected value="1M">
+                        Last 1 Minute
                         </option>
-                        <option value="1H">1 Hour</option>
-                        <option value="3H">3 Hours</option>
-                        <option value="1D">1 Day</option>
+                        <option selected value="5M">
+                        Last 5 Minutes
+                        </option>
+                        <option selected value="10M">
+                        Last 10 Minutes
+                        </option>
+                        <option selected value="15M">
+                        Last 2 Hours
+                        </option>
+                        <option value="1H">Last 8 Hours</option>
+                        <option value="3H">Last 24 Hours</option>
+                        <option value="1D">Last 7 Days</option>
                       </select>
       <div className="w-full h-[90vh]">
       {multipleDevice && <div className='radiobtn_div'>
@@ -816,7 +880,7 @@ function Charts() {
                     >
                       <CartesianGrid strokeDasharray="3 3" />
                       <XAxis dataKey="srvtime" type="number"
-          domain={['auto', 'auto']} allowDuplicatedCategory={false} angle={-45}/>
+          domain={['auto', 'auto']} allowDuplicatedCategory={false} angle={0}/>
                       <YAxis
                         domain={
                           chartData?.length > 0 ?
@@ -853,7 +917,9 @@ function Charts() {
                       {type1 &&
                         chartData.map((item:any, index:number) => (
                           <>
-                          {/* <Tooltips labelClassName="dID" label={item?.dID === undefined ? null:'dID'} /> */}
+                          {/* <Tooltips labelClassName="dID" label={item?.dID === undefined ? null:'dID'} />  */}
+                          <Tooltip content={<CustomTooltip />} />
+                          {/* <Tooltip content={<CustomTooltip />} /> */}
                           <Line
                             type="monotone"
                             connectNulls
@@ -875,6 +941,7 @@ function Charts() {
                         ))}
                       {type2 &&
                         chartData.map((item:any, index:number) => (
+                          <><Tooltips labelClassName="dID" label={item?.dID === undefined ? null:'dID'} /> 
                           <Line
                             type="monotone"
                             data={item.data}
@@ -883,10 +950,21 @@ function Charts() {
                             stroke={individualDevice?"#000000":colors[index]}
                             strokeWidth={3}
                             key={individualDevice?"#000000":colors[index]}
+                            label={(entry) => {
+                              // Adjust the position of the tooltip for specific lines
+                              if (entry.dataKey === "sPM2") {
+                                return entry.value;
+                              }
+                              return null;
+                            }}
                           />
+                          </>
                         ))}
                       {type3 &&
                         chartData.map((item:any, index:number) => (
+                          <>
+                          <Tooltips labelClassName="dID" label={item?.dID === undefined ? null:'dID'} /> 
+                          
                           <Line
                             type="monotone"
                             data={item.data}
@@ -895,10 +973,20 @@ function Charts() {
                             stroke={individualDevice?"#000000":colors[index]}
                             strokeWidth={3}
                             key={item.data.dID}
+                            label={(entry) => {
+                              // Adjust the position of the tooltip for specific lines
+                              if (entry.dataKey === "sPM4") {
+                                return entry.value;
+                              }
+                              return null;
+                            }}
                           />
+                          </>
                         ))}
                       {type6 &&
                         chartData.map((item:any, index:number) => (
+                          <>
+                          <Tooltips labelClassName="dID" label={item?.dID === undefined ? null:'dID'} /> 
                           <Line
                             type="monotone"
                             data={item.data}
@@ -907,10 +995,20 @@ function Charts() {
                             stroke={individualDevice?"#000000":colors[index]}
                             strokeWidth={3}
                             key={item.data.dID}
+                            label={(entry) => {
+                              // Adjust the position of the tooltip for specific lines
+                              if (entry.dataKey === "sPM10") {
+                                return entry.value;
+                              }
+                              return null;
+                            }}
                           />
+                          </>
                         ))}
                       {type4 &&
                         chartData.map((item:any, index:number) => (
+                          <>
+                          <Tooltips labelClassName="dID" label={item?.dID === undefined ? null:'dID'} /> 
                           <Line
                             type="monotone"
                             data={item.data}
@@ -919,11 +1017,28 @@ function Charts() {
                             stroke={individualDevice?"#000000":colors[index]}
                             strokeWidth={3}
                             key={item.data.dID}
+                            label={(entry) => {
+                              // Adjust the position of the tooltip for specific lines
+                              if (entry.dataKey === "temp") {
+                                return entry.value;
+                              }
+                              return null;
+                            }}
                           />
+                          </>
                         ))}
                       {type5 &&
                         chartData.map((item:any, index:number) => (
-                          <Line type="monotone" connectNulls key={item.data.dID} dataKey="rh" stroke={individualDevice?"#000000":colors[index]} strokeWidth={3} data={item.data} />
+                          <>
+                          <Tooltips labelClassName="dID" label={item?.dID === undefined ? null:'dID'} /> 
+                          <Line type="monotone" connectNulls key={item.data.dID} dataKey="rh" stroke={individualDevice?"#000000":colors[index]} strokeWidth={3} data={item.data} label={(entry) => {
+                            // Adjust the position of the tooltip for specific lines
+                            if (entry.dataKey === "rh") {
+                              return entry.value;
+                            }
+                            return null;
+                          }}/>
+                          </>
                         ))}
                     </LineChart>
                   </ResponsiveContainer>

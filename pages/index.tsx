@@ -242,7 +242,7 @@ const parametersRef = useRef<Select | null>(null);
   useEffect(() => {
     const intervalId = setInterval(() => {
       // Call your function here
-      const currentTs = Date.now() - 5000;
+      const currentTs = Date.now() - 6000;
       let activeStationary = 0;
       let activeMobile = 0;
       let activeLeftMirror = 0;
