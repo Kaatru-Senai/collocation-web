@@ -7,7 +7,7 @@ import Select from 'react-select';
 import SearchIcon from '../public/icons8-search.svg';
 import Image from 'next/image';
 import {deviceList} from '../data/deviceList';
-import {lowerFirstCol, upperFirstCol} from '../data/gridView';
+import {eighteenthCol, eigthCol, eleventhCol, fifteenthCol, fifthCol, fourteenthCol, fourthCol, lowerFirstCol, lowerLastCol, ninteenthCol, ninthCol, secondCol, seventeenthCol, seventhCol, sixteenthCol, sixthCol, tenthCol, thirdCol, thirteenthCol, twelvethCol, twentythCol, upperFirstCol, upperLastCol} from '../data/gridView';
 import {defaultParameters} from '../data/deviceList';
 // import Navbar from '@/components/Navbar';
 import Logo from '../public/logo.png';
@@ -70,6 +70,29 @@ const parameterOptions = [
 export default function Home() {
   const [lFirstCol,setLFirstCol]=useState(lowerFirstCol);
   const [uFirstCol,setUFirstCol]=useState(upperFirstCol);
+  const [SecondCol,setSecondCol]=useState(secondCol);
+  const [ThirdCol,setThirdCol]=useState(thirdCol);
+  const [FourthCol,setFourthCol]=useState(fourthCol);
+  const [FifthCol,setFifthCol]=useState(fifthCol);
+  const [SixthCol,setSixthCol]=useState(sixthCol);
+  const [SeventhCol,setSeventhCol]=useState(seventhCol);
+  const [EighthCol,setEighthCol]=useState(eigthCol);
+  const [NinthCol,setNinthCol]=useState(ninthCol);
+  const [TenthCol,setTenthCol]=useState(tenthCol);
+  const [EleventhCol,setEleventhCol]=useState(eleventhCol);
+  const [TwelvethCol,setTwelvethCol]=useState(twelvethCol);
+  const [ThirteenthCol,setThirteenthCol]=useState(thirteenthCol);
+  const [FourteenthCol,setFourteenthCol]=useState(fourteenthCol);
+  const [FifteenthCol,setFifteenthCol]=useState(fifteenthCol);
+  const [SixteenthCol,setSixteenthCol]=useState(sixteenthCol);
+  const [SeventeenthCol,setSeventeethCol]=useState(seventeenthCol);
+  const [EighteenthCol,setEighteenCol]=useState(eighteenthCol);
+  const [NineteenthCol,setNineteenthCol]=useState(ninteenthCol);
+  const [TwentyethCol,setTwentyethCol]=useState(twentythCol);
+  // const [lLastCol,setLastCol]=useState(lowerFirstCol);
+  // const [uLastCol,setLCol]=useState(upperFirstCol);
+  const [lLastCol,setlLastCol]=useState(lowerLastCol);
+  const [uLastCol,setuLastCol]=useState(upperLastCol);
   const [isTableView,setIsTableView]=useState(false);
   const [isLoading , setIsLoading] = useState(true);
   const [activeButton,setActiveButton] = useState(0);
@@ -239,9 +262,142 @@ const parametersRef = useRef<Select | null>(null);
       console.log(mes);
       lFirstCol.map((item)=>{
         if(item.dID==mes.dID){
+          item.value=mes;
           item.lts = Date.now();
         }
       });
+      uFirstCol.map((item)=>{
+        if(item.dID==mes.dID){
+          item.value=mes;
+          item.lts = Date.now();
+        }
+      });
+      SecondCol.map((item)=>{
+        if(item.dID==mes.dID){
+          item.value=mes;
+          item.lts = Date.now();
+        }
+      });
+      ThirdCol.map((item)=>{
+        if(item.dID==mes.dID){
+          item.value=mes;
+          item.lts = Date.now();
+        }
+      })
+      FourthCol.map((item)=>{
+        if(item.dID==mes.dID){
+          item.value=mes;
+          item.lts = Date.now();
+        }
+      })
+      FifthCol.map((item)=>{
+        if(item.dID==mes.dID){
+          item.value=mes;
+          item.lts = Date.now();
+        }
+      })
+      SixthCol.map((item)=>{
+        if(item.dID==mes.dID){
+          item.value=mes;
+          item.lts = Date.now();
+        }
+      })
+      SeventhCol.map((item)=>{
+        if(item.dID==mes.dID){
+          item.value=mes;
+          item.lts = Date.now();
+        }
+      })
+      EighthCol.map((item)=>{
+        if(item.dID==mes.dID){
+          item.value=mes;
+          item.lts = Date.now();
+        }
+      })
+      NinthCol.map((item)=>{
+        if(item.dID==mes.dID){
+          item.value=mes;
+          item.lts = Date.now();
+        }
+      })
+      TenthCol.map((item)=>{
+        if(item.dID==mes.dID){
+          item.value=mes;
+          item.lts = Date.now();
+        }
+      })
+      EleventhCol.map((item)=>{
+        if(item.dID==mes.dID){
+          item.value=mes;
+          item.lts = Date.now();
+        }
+      })
+      TwelvethCol.map((item)=>{
+        if(item.dID==mes.dID){
+          item.value=mes;
+          item.lts = Date.now();
+        }
+      })
+      ThirteenthCol.map((item)=>{
+        if(item.dID==mes.dID){
+          item.value=mes;
+          item.lts = Date.now();
+        }
+      })
+      FourteenthCol.map((item)=>{
+        if(item.dID==mes.dID){
+          item.value=mes;
+          item.lts = Date.now();
+        }
+      })
+      FifteenthCol.map((item)=>{
+        if(item.dID==mes.dID){
+          item.value=mes;
+          item.lts = Date.now();
+        }
+      })
+      SixteenthCol.map((item)=>{
+        if(item.dID==mes.dID){
+          item.value=mes;
+          item.lts = Date.now();
+        }
+      })
+      SeventeenthCol.map((item)=>{
+        if(item.dID==mes.dID){
+          item.value=mes;
+          item.lts = Date.now();
+        }
+      })
+      EighteenthCol.map((item)=>{
+        if(item.dID==mes.dID){
+          item.value=mes;
+          item.lts = Date.now();
+        }
+      })
+      NineteenthCol.map((item)=>{
+        if(item.dID==mes.dID){
+          item.value=mes;
+          item.lts = Date.now();
+        }
+      })
+      TwentyethCol.map((item)=>{
+        if(item.dID==mes.dID){
+          item.value=mes;
+          item.lts = Date.now();
+        }
+      })
+      lLastCol.map((item)=>{
+        if(item.dID==mes.dID){
+          item.value=mes;
+          item.lts = Date.now();
+        }
+      })
+      uLastCol.map((item)=>{
+        if(item.dID==mes.dID){
+          item.value=mes;
+          item.lts = Date.now();
+        }
+      })
       data.map((item)=>{
         if(item.dID==mes.dID){
           item.value=mes;
@@ -291,6 +447,358 @@ const parametersRef = useRef<Select | null>(null);
           item.status = false;
         }
       })
+      uFirstCol.map((item)=>{
+        if(item.lts > currentTs){
+          if(/\b(SG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(MG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(LMG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+        }
+        else{
+          item.status = false;
+        }
+      })
+      SecondCol.map((item)=>{
+        if(item.lts > currentTs){
+          if(/\b(SG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(MG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(LMG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+        }
+        else{
+          item.status = false;
+        }
+      })
+      ThirdCol.map((item)=>{
+        if(item.lts > currentTs){
+          if(/\b(SG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(MG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(LMG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+        }
+        else{
+          item.status = false;
+        }
+      })
+      FourthCol.map((item)=>{
+        if(item.lts > currentTs){
+          if(/\b(SG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(MG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(LMG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+        }
+        else{
+          item.status = false;
+        }
+      })
+      FifthCol.map((item)=>{
+        if(item.lts > currentTs){
+          if(/\b(SG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(MG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(LMG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+        }
+        else{
+          item.status = false;
+        }
+      })
+      SixthCol.map((item)=>{
+        if(item.lts > currentTs){
+          if(/\b(SG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(MG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(LMG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+        }
+        else{
+          item.status = false;
+        }
+      })
+      SeventhCol.map((item)=>{
+        if(item.lts > currentTs){
+          if(/\b(SG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(MG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(LMG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+        }
+        else{
+          item.status = false;
+        }
+      })
+      EighthCol.map((item)=>{
+        if(item.lts > currentTs){
+          if(/\b(SG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(MG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(LMG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+        }
+        else{
+          item.status = false;
+        }
+      })
+      NinthCol.map((item)=>{
+        if(item.lts > currentTs){
+          if(/\b(SG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(MG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(LMG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+        }
+        else{
+          item.status = false;
+        }
+      })
+      TenthCol.map((item)=>{
+        if(item.lts > currentTs){
+          if(/\b(SG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(MG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(LMG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+        }
+        else{
+          item.status = false;
+        }
+      })
+      EleventhCol.map((item)=>{
+        if(item.lts > currentTs){
+          if(/\b(SG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(MG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(LMG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+        }
+        else{
+          item.status = false;
+        }
+      })
+      TwelvethCol.map((item)=>{
+        if(item.lts > currentTs){
+          if(/\b(SG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(MG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(LMG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+        }
+        else{
+          item.status = false;
+        }
+      })
+      ThirteenthCol.map((item)=>{
+        if(item.lts > currentTs){
+          if(/\b(SG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(MG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(LMG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+        }
+        else{
+          item.status = false;
+        }
+      })
+      FourteenthCol.map((item)=>{
+        if(item.lts > currentTs){
+          if(/\b(SG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(MG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(LMG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+        }
+        else{
+          item.status = false;
+        }
+      })
+      FifteenthCol.map((item)=>{
+        if(item.lts > currentTs){
+          if(/\b(SG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(MG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(LMG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+        }
+        else{
+          item.status = false;
+        }
+      })
+      SixteenthCol.map((item)=>{
+        if(item.lts > currentTs){
+          if(/\b(SG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(MG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(LMG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+        }
+        else{
+          item.status = false;
+        }
+      })
+      SeventeenthCol.map((item)=>{
+        if(item.lts > currentTs){
+          if(/\b(SG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(MG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(LMG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+        }
+        else{
+          item.status = false;
+        }
+      })
+      EighteenthCol.map((item)=>{
+        if(item.lts > currentTs){
+          if(/\b(SG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(MG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(LMG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+        }
+        else{
+          item.status = false;
+        }
+      })
+      NineteenthCol.map((item)=>{
+        if(item.lts > currentTs){
+          if(/\b(SG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(MG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(LMG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+        }
+        else{
+          item.status = false;
+        }
+      })
+      TwentyethCol.map((item)=>{
+        if(item.lts > currentTs){
+          if(/\b(SG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(MG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(LMG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+        }
+        else{
+          item.status = false;
+        }
+      })
+      lLastCol.map((item)=>{
+        if(item.lts > currentTs){
+          if(/\b(SG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(MG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(LMG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+        }
+        else{
+          item.status = false;
+        }
+      })
+      uLastCol.map((item)=>{
+        if(item.lts > currentTs){
+          if(/\b(SG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(MG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(LMG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+        }
+        else{
+          item.status = false;
+        }
+      })     
       data?.map((item:DataItem)=>{
         if(item.lts > currentTs){
           if(/\b(SG)\d+\b/.test(item?.dID)){
@@ -609,25 +1117,176 @@ const parametersRef = useRef<Select | null>(null);
         </table>    
         </Spin>
       </div></>}
-      {!isTableView && <div className="flex flex-col mt-[8vh] justify-start items-start w-[100vw] h-[90vh]">
+      {!isTableView && <div className="flex flex-row mt-[8vh] w-[100vw] h-[90vh]">
         <div className="flex flex-col mt-[50px] gap-4 pb-[50px]">
-          <div className="flex flex-col">
-            {lFirstCol.map((item:any)=>{
-              return(
-                <div key={item.dID} className={`w-[50px] h-[50px]  rounded-[50%] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
-              )
-            })}
+          <div className="flex flex-col gap-[25px]">
+          {uFirstCol.map((item:any)=>{
+                return(
+                  <div key={item.dID} className={`w-[60px] h-[25px]  border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+                )
+              })}
+            </div>
+            <div className="flex flex-col gap-[25px] mt-[140px]">
+              {lFirstCol.map((item:any)=>{
+                return(
+                  <div key={item.dID} className={`w-[60px] h-[25px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+                )
+              })}
           </div>
-          <div className="flex flex-col">
-            <div className="w-[50px] h-[50px] bg-white rounded-[50%] border-black border-[2px] text-black flex items-center justify-center">S33</div>
-            <div className="w-[50px] h-[50px] bg-white rounded-[50%] border-black border-[2px] text-black flex items-center justify-center">S33</div>
-            <div className="w-[50px] h-[50px] bg-white rounded-[50%] border-black border-[2px] text-black flex items-center justify-center">S33</div>
-            <div className="w-[50px] h-[50px] bg-white rounded-[50%] border-black border-[2px] text-black flex items-center justify-center">S33</div>
-            <div className="w-[50px] h-[50px] bg-white rounded-[50%] border-black border-[2px] text-black flex items-center justify-center">S33</div>
-            <div className="w-[50px] h-[50px] bg-white rounded-[50%] border-black border-[2px] text-black flex items-center justify-center">S33</div>
-            <div className="w-[50px] h-[50px] bg-white rounded-[50%] border-black border-[2px] text-black flex items-center justify-center">S33</div>
-          </div>
+          
         </div>
+        <div className="flex flex-col gap-[45px] mt-[0px]">
+          {SecondCol.map((item)=>{
+            return(
+              <div key={item.dID} className={`w-[60px] h-[50px] p-4 border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+            )
+          })}
+        </div>
+        <div className="flex flex-col gap-[45px] mt-[47px] ">
+          {ThirdCol.map((item)=>{
+            return(
+              <div key={item.dID} className={`w-[60px] h-[50px]  border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+            )
+          })}
+        </div>
+        <div className="flex flex-col gap-[45px] mt-[0px] h-[105vh]">
+          {FourthCol.map((item)=>{
+            return(
+              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+            )
+          })}
+        </div>
+        <div className="flex flex-col gap-[45px] mt-[47px]">
+          {FifthCol.map((item)=>{
+            return(
+              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+            )
+          })}
+        </div>
+        <div className="flex flex-col gap-[45px] mt-[0px] h-[105vh]">
+          {SixthCol.map((item)=>{
+            return(
+              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+            )
+          })}
+        </div>
+        <div className="flex flex-col gap-[45px] mt-[47px]">
+          {SeventhCol.map((item)=>{
+            return(
+              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+            )
+          })}
+        </div>
+        <div className="flex flex-col gap-[45px] mt-[0px] h-[105vh]">
+          {EighthCol.map((item)=>{
+            return(
+              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+            )
+          })}
+        </div>
+        <div className="flex flex-col gap-[45px] mt-[47px]">
+          {NinthCol.map((item)=>{
+            return(
+              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+            )
+          })}
+        </div>
+        <div className="flex flex-col gap-[45px] mt-[0px] h-[105vh]">
+          {TenthCol.map((item)=>{
+            return(
+              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+            )
+          })}
+        </div>
+        <div className="flex flex-col gap-[45px] mt-[47px]">
+          {EleventhCol.map((item)=>{
+            return(
+              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+            )
+          })}
+        </div>
+        <div className="flex flex-col gap-[45px] mt-[0px] h-[105vh]">
+          {TwelvethCol.map((item)=>{
+            return(
+              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+            )
+          })}
+        </div>
+        <div className="flex flex-col gap-[45px] mt-[47px]">
+          {ThirteenthCol.map((item)=>{
+            return(
+              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+            )
+          })}
+        </div>
+        <div className="flex flex-col gap-[45px] mt-[0px] h-[105vh]">
+          {FourteenthCol.map((item)=>{
+            return(
+              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+            )
+          })}
+        </div>
+        <div className="flex flex-col gap-[45px] mt-[47px]">
+          {FifteenthCol.map((item)=>{
+            return(
+              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+            )
+          })}
+        </div>
+        <div className="flex flex-col gap-[45px] mt-[0px] h-[105vh]">
+          {SixteenthCol.map((item)=>{
+            return(
+              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+            )
+          })}
+        </div>
+        <div className="flex flex-col gap-[45px] mt-[47px]">
+          {SeventeenthCol.map((item)=>{
+            return(
+              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+            )
+          })}
+        </div>
+        <div className="flex flex-col gap-[45px] mt-[0px] h-[105vh]">
+          {EighteenthCol.map((item)=>{
+            return(
+              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+            )
+          })}
+        </div>
+        <div className="flex flex-col gap-[45px] mt-[47px]">
+          {NineteenthCol.map((item)=>{
+            return(
+              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+            )
+          })}
+        </div>
+        <div className="flex flex-col gap-[45px] mt-[0px] h-[105vh]">
+          {TwentyethCol.map((item)=>{
+            return(
+              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+            )
+          })}
+        </div>
+        <div className="flex flex-col mt-[47px] gap-4 pb-[50px]">
+            <div className="flex flex-col gap-[25px]">
+              {lLastCol.map((item:any)=>{
+                return(
+                  <div key={item.dID} className={`w-[60px] h-[25px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+                )
+              })}
+          </div>
+          <div className="flex flex-col gap-[25px]  mt-[140px]">
+          {uLastCol.map((item:any)=>{
+                return(
+                  <div key={item.dID} className={`w-[60px] h-[25px]  border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+                )
+              })}
+            </div>
+          
+        </div>
+        
+        
       </div>}
       <ToastContainer />
     </main>
@@ -639,7 +1298,7 @@ const parametersRef = useRef<Select | null>(null);
 // {[0,1,2,3,4,5,6,7,8,9].map((item)=>
         
 //   <><div className="flex flex-row justify-between gap-4 px-4 w-[90%]">
-//       <div className="w-[50px] h-[50px] bg-white rounded-[50%] border-black border-[2px] text-black flex items-center justify-center">
+//       <div className="w-[60px] h-[50px] bg-white rounded-[50%] border-black border-[2px] text-black flex items-center justify-center">
 //         S33
 //       </div>
 //       <div className="w-[50px] h-[50px] bg-white rounded-[50%] border-black border-[2px] text-black flex items-center justify-center">
