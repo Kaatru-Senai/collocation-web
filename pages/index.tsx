@@ -7,6 +7,7 @@ import Select from 'react-select';
 import SearchIcon from '../public/icons8-search.svg';
 import Image from 'next/image';
 import {deviceList} from '../data/deviceList';
+import {lowerFirstCol, upperFirstCol} from '../data/gridView';
 import {defaultParameters} from '../data/deviceList';
 // import Navbar from '@/components/Navbar';
 import Logo from '../public/logo.png';
@@ -19,6 +20,7 @@ import { ToastContainer, toast } from 'react-toastify';
 const animatedComponents = makeAnimated();
 
 const parameterOptions = [
+  {value:'all',label:'all'},
   { value: 'rHeap', label: 'rHeap' },
   { value: 'lHeap', label: 'lHeap' },
   { value: 'dTS', label: 'dTS' },
@@ -66,6 +68,9 @@ const parameterOptions = [
 ]
 
 export default function Home() {
+  const [lFirstCol,setLFirstCol]=useState(lowerFirstCol);
+  const [uFirstCol,setUFirstCol]=useState(upperFirstCol);
+  const [isTableView,setIsTableView]=useState(false);
   const [isLoading , setIsLoading] = useState(true);
   const [activeButton,setActiveButton] = useState(0);
   const [filteredData,setFilteredData] = useState<{
@@ -99,10 +104,21 @@ export default function Home() {
   const handleOk = () => {
     // const value = parametersRef?.current?.commonProps?.selectProps?.value ?? [];
     SetParameters(selectedParams);
+    console.log(selectedParams);
     let arr:string[] = []
     selectedParams.map((item:any)=>{
-      arr.push(item.value);
+      if(item.value=="all"){
+        SetParameters(defaultParameters);
+        defaultParameters.map((item)=>{
+          arr.push(item.value);
+        })
+        return ;
+      }
+      else{
+        arr.push(item.value);
+      }
     })
+    console.log(arr);
     setParamsArr(arr);
     console.log(parametersRef?.current);
     setIsModalOpen(false);
@@ -221,6 +237,11 @@ const parametersRef = useRef<Select | null>(null);
     onMessage: (response) => {
       const mes = JSON.parse(response.data);
       console.log(mes);
+      lFirstCol.map((item)=>{
+        if(item.dID==mes.dID){
+          item.lts = Date.now();
+        }
+      });
       data.map((item)=>{
         if(item.dID==mes.dID){
           item.value=mes;
@@ -232,6 +253,7 @@ const parametersRef = useRef<Select | null>(null);
     shouldReconnect: (_closeEvent) => true,
   });
   // console.log(data);
+  
   useEffect(()=>{
     setCurrentPage(data?.slice(0,15));
     setTimeout(()=>{
@@ -239,6 +261,7 @@ const parametersRef = useRef<Select | null>(null);
     },5000)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
+  
   useEffect(() => {
     const intervalId = setInterval(() => {
       // Call your function here
@@ -252,8 +275,22 @@ const parametersRef = useRef<Select | null>(null);
         status: boolean
         // Add other properties if necessary
       }
-      
-      
+      lFirstCol.map((item)=>{
+        if(item.lts > currentTs){
+          if(/\b(SG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(MG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+          else if (/\b(LMG)\d+\b/.test(item?.dID)){
+            item.status = true;
+          }
+        }
+        else{
+          item.status = false;
+        }
+      })
       data?.map((item:DataItem)=>{
         if(item.lts > currentTs){
           if(/\b(SG)\d+\b/.test(item?.dID)){
@@ -282,6 +319,8 @@ const parametersRef = useRef<Select | null>(null);
     return () => clearInterval(intervalId);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  console.log("the lastfirstcol is ",lFirstCol);
+  console.log(data);
   const setDataOnFilter = (val:number) =>{
     switch(val){
       case 1:
@@ -440,9 +479,10 @@ const parametersRef = useRef<Select | null>(null);
       <div className="h-[50px] w-full fixed flex justify-between items-center border-b-2">
         <div className="flex flex-row gap-[15%]">
             <Image src={Logo} alt="" width={110}/>
-            <div className="flex flex-row gap-4">
-            <Link href="/">Home</Link>
+            <div className="flex flex-row gap-3">
+            <Link href="/" onClick={()=>setIsTableView(true)}>Home</Link>
             <Link href="/charts">Charts</Link>
+            <p className='w-[140px] cursor-pointer' onClick={()=>setIsTableView(false)}>Grid View</p>
             </div>
         </div>
         <div className=""><h1 className='text-2xl'>COLOCATION</h1></div>
@@ -465,8 +505,7 @@ const parametersRef = useRef<Select | null>(null);
         </div> 
       </div>
     </div>
-    
-      <div className="w-full flex flex-row justify-between gap-4 fixed mt-[60px] z-[1]"> 
+{isTableView &&      <><div className="w-full flex flex-row justify-between gap-4 fixed mt-[60px] z-[1]"> 
         <div className="basis-[100%] w-full flex flex-row gap-4 mx-2 text-white">
           <div className="basis-[33.3%] bg-slate-400 h-[12vh] rounded-md flex flex-col justify-evenly">
             <div className="flex justify-center items-center">
@@ -569,16 +608,97 @@ const parametersRef = useRef<Select | null>(null);
           </tbody>
         </table>    
         </Spin>
-      </div>
-      
+      </div></>}
+      {!isTableView && <div className="flex flex-col mt-[8vh] justify-start items-start w-[100vw] h-[90vh]">
+        <div className="flex flex-col mt-[50px] gap-4 pb-[50px]">
+          <div className="flex flex-col">
+            {lFirstCol.map((item:any)=>{
+              return(
+                <div key={item.dID} className={`w-[50px] h-[50px]  rounded-[50%] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+              )
+            })}
+          </div>
+          <div className="flex flex-col">
+            <div className="w-[50px] h-[50px] bg-white rounded-[50%] border-black border-[2px] text-black flex items-center justify-center">S33</div>
+            <div className="w-[50px] h-[50px] bg-white rounded-[50%] border-black border-[2px] text-black flex items-center justify-center">S33</div>
+            <div className="w-[50px] h-[50px] bg-white rounded-[50%] border-black border-[2px] text-black flex items-center justify-center">S33</div>
+            <div className="w-[50px] h-[50px] bg-white rounded-[50%] border-black border-[2px] text-black flex items-center justify-center">S33</div>
+            <div className="w-[50px] h-[50px] bg-white rounded-[50%] border-black border-[2px] text-black flex items-center justify-center">S33</div>
+            <div className="w-[50px] h-[50px] bg-white rounded-[50%] border-black border-[2px] text-black flex items-center justify-center">S33</div>
+            <div className="w-[50px] h-[50px] bg-white rounded-[50%] border-black border-[2px] text-black flex items-center justify-center">S33</div>
+          </div>
+        </div>
+      </div>}
       <ToastContainer />
     </main>
   )
 }
 
-{/* <button className='basis-[50%] bg-slate-400 p-2 rounded-md text-white font-bold' onClick={()=> setCurrentPage(data.slice(0,15))}>STATIONARY ACTIVE<p>{sCount}/105</p></button>
-          <button className='basis-[50%] bg-slate-400 p-2 rounded-md text-white font-bold' onClick={()=> setCurrentPage(data.slice(0,15))}>STATIONARY INACTIVE<p>{sCount}/105</p></button>
-          <button className='basis-[50%] bg-orange-300 p-2 rounded-md text-white font-bold' onClick={()=> setCurrentPage(data.slice(105,120))}>MOBILE ACTIVE<p>{mCount}/70</p></button>
-          <button className='basis-[50%] bg-orange-300 p-2 rounded-md text-white font-bold' onClick={()=> setCurrentPage(data.slice(105,120))}>MOBILE INACTIVE<p>{mCount}/70</p></button>
-          <button className='basis-[50%] bg-orange-300 p-2 rounded-md text-white font-bold' onClick={()=> setCurrentPage(data.slice(105,120))}>LEFT MIRROR ACTIVE <p>{mCount}/70</p></button>
-          <button className='basis-[50%] bg-orange-300 p-2 rounded-md text-white font-bold' onClick={()=> setCurrentPage(data.slice(105,120))}>LEFT MIRROR INACTIVE<p>{mCount}/70</p></button> */}
+//TODO: <div className="bg-red-500 w-[2vw] h-[5vh] absolute left-[6vw] top-[0px] rounded-[50%]"></div> 
+
+// {[0,1,2,3,4,5,6,7,8,9].map((item)=>
+        
+//   <><div className="flex flex-row justify-between gap-4 px-4 w-[90%]">
+//       <div className="w-[50px] h-[50px] bg-white rounded-[50%] border-black border-[2px] text-black flex items-center justify-center">
+//         S33
+//       </div>
+//       <div className="w-[50px] h-[50px] bg-white rounded-[50%] border-black border-[2px] text-black flex items-center justify-center">
+//         S33
+//       </div>
+//       <div className="w-[50px] h-[50px] bg-white rounded-[50%] border-black border-[2px] text-black flex items-center justify-center">
+//         S33
+//       </div>
+//       <div className="w-[50px] h-[50px] bg-white rounded-[50%] border-black border-[2px] text-black flex items-center justify-center">
+//         S33
+//       </div>
+//       <div className="w-[50px] h-[50px] bg-white rounded-[50%] border-black border-[2px] text-black flex items-center justify-center">
+//         S33
+//       </div>
+//       <div className="w-[50px] h-[50px] bg-white rounded-[50%] border-black border-[2px] text-black flex items-center justify-center">
+//         S33
+//       </div>
+//       <div className="w-[50px] h-[50px] bg-white rounded-[50%] border-black border-[2px] text-black flex items-center justify-center">
+//         S33
+//       </div>
+//       <div className="w-[50px] h-[50px] bg-white rounded-[50%] border-black border-[2px] text-black flex items-center justify-center">
+//         S33
+//       </div>
+//       <div className="w-[50px] h-[50px] bg-white rounded-[50%] border-black border-[2px] text-black flex items-center justify-center">
+//         S33
+//       </div>
+//       <div className="w-[50px] h-[50px] bg-white rounded-[50%] border-black border-[2px] text-black flex items-center justify-center">
+//         S33
+//       </div>
+//   </div>
+//   <div className="flex flex-row justify-between gap-3 px-4 ml-[8vh] w-[90%]">
+//   <div className="w-[50px] h-[50px] bg-white rounded-[50%] border-black border-[2px] text-black flex items-center justify-center">
+//         S33
+//       </div>
+//       <div className="w-[50px] h-[50px] bg-white rounded-[50%] border-black border-[2px] text-black flex items-center justify-center">
+//         S33
+//       </div>
+//       <div className="w-[50px] h-[50px] bg-white rounded-[50%] border-black border-[2px] text-black flex items-center justify-center">
+//         S33
+//       </div>
+//       <div className="w-[50px] h-[50px] bg-white rounded-[50%] border-black border-[2px] text-black flex items-center justify-center">
+//         S33
+//       </div>
+//       <div className="w-[50px] h-[50px] bg-white rounded-[50%] border-black border-[2px] text-black flex items-center justify-center">
+//         S33
+//       </div>
+//       <div className="w-[50px] h-[50px] bg-white rounded-[50%] border-black border-[2px] text-black flex items-center justify-center">
+//         S33
+//       </div>
+//       <div className="w-[50px] h-[50px] bg-white rounded-[50%] border-black border-[2px] text-black flex items-center justify-center">
+//         S33
+//       </div>
+//       <div className="w-[50px] h-[50px] bg-white rounded-[50%] border-black border-[2px] text-black flex items-center justify-center">
+//         S33
+//       </div>
+//       <div className="w-[50px] h-[50px] bg-white rounded-[50%] border-black border-[2px] text-black flex items-center justify-center">
+//         S33
+//       </div>
+//       <div className="w-[50px] h-[50px] bg-white rounded-[50%] border-black border-[2px] text-black flex items-center justify-center">
+//         S33
+//       </div>
+//   </div></>)}

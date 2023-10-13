@@ -119,7 +119,7 @@ function Charts() {
     })
     setSelectedDevices(devicesArr);
     getChartData('15M',devicesArr);
-
+    setTimeFrame('15M')
     // const searchedDevices:any[] = [];
     // devicesArr?.forEach((item1:string) => {
     //   data.forEach((item2) => {
@@ -133,145 +133,7 @@ function Charts() {
     // setCurrentPage(searchedDevices);
    }
   const inputRef = useRef<HTMLInputElement | null>(null);
-  const [chartData, setChartData] = useState<any>([{
-    'status': 200,
-    'dID': 'L14',
-    'data': [
-      {
-        'sPM2': 25.71,
-        'sPM1': 21.21,
-        'dPM10': 24.04,
-        'rh': 44.19,
-        'temp': 35.47,
-        'srvtime': 1681142304959,
-      },
-      {
-        'sPM2': 21.99,
-        'sPM1': 29.66,
-        'sPM10': 21.23,
-        'rh': 45.37,
-        'temp': 38.42,
-        'srvtime': 1681143204957,
-      },
-      {
-        'sPM2': 22.06,
-        'sPM1': 29.67,
-        'sPM10': 24.29,
-        'rh': 47.54,
-        'temp': 36.9,
-        'srvtime': 1681144104961,
-      },
-      {
-        'sPM2': 24.62,
-        'sPM1': 17.19,
-        'sPM10': 22.84,
-        'rh': 48.76,
-        'temp': 36.35,
-        'srvtime': 1681145004958,
-      },
-      {
-        'sPM2': 22.24,
-        'sPM1': 25.78,
-        'sPM10': 27.36,
-        'rh': 50.03,
-        'temp': 36.27,
-        'srvtime': 1681145904958,
-      },
-      {
-        'sPM2': 20.99,
-        'sPM1': 19.54,
-        'sPM10': 22.17,
-        'rh': 50.24,
-        'temp': 36.2,
-        'srvtime': 1681146804973,
-      },
-      {
-        'sPM2': 21.44,
-        'sPM1': 20.1,
-        'sPM10': 22.72,
-        'rh': 50.54,
-        'temp': 36.08,
-        'srvtime': 1681147704974,
-      },
-      {
-        'sPM2': 21.27,
-        'sPM1': 19.81,
-        'sPM10': 22.49,
-        'rh': 50.84,
-        'temp': 35.97,
-        'srvtime': 1681148604971,
-      },
-    ],
-  },{
-    'status': 200,
-    'dID': 'L24',
-    'data': [
-      {
-        'sPM2': 24.71,
-        'sPM1': 22.21,
-        'sPM10': 24.04,
-        'rh': 44.19,
-        'temp': 35.47,
-        'srvtime': 1681142304959,
-      },
-      {
-        'sPM2': 27.99,
-        'sPM1': 27.66,
-        'sPM10': 21.23,
-        'rh': 45.37,
-        'temp': 38.42,
-        'srvtime': 1681143204957,
-      },
-      {
-        'sPM2': 24.06,
-        'sPM1': 23.67,
-        'sPM10': 24.29,
-        'rh': 47.54,
-        'temp': 36.9,
-        'srvtime': 1681144104961,
-      },
-      {
-        'sPM2': 23.62,
-        'sPM1': 36.19,
-        'sPM10': 22.84,
-        'rh': 48.76,
-        'temp': 36.35,
-        'srvtime': 1681145004958,
-      },
-      {
-        'sPM2': 29.24,
-        'sPM1': 25.78,
-        'sPM10': 27.36,
-        'rh': 50.03,
-        'temp': 36.27,
-        'srvtime': 1681145904958,
-      },
-      {
-        'sPM2': 20.99,
-        'sPM1': 19.54,
-        'sPM10': 22.17,
-        'rh': 50.24,
-        'temp': 36.2,
-        'srvtime': 1681146804973,
-      },
-      {
-        'sPM2': 19.44,
-        'sPM1': 20.1,
-        'sPM10': 22.72,
-        'rh': 50.54,
-        'temp': 36.08,
-        'srvtime': 1681147704974,
-      },
-      {
-        'sPM2': 18.27,
-        'sPM1': 19.81,
-        'sPM10': 22.49,
-        'rh': 50.84,
-        'temp': 35.97,
-        'srvtime': 1681148604971,
-      },
-    ],
-  }]);
+  const [chartData, setChartData] = useState<any>();
   type finalMinMaxType = {
     min: {
       sPM2: number,
@@ -580,6 +442,18 @@ function Charts() {
   //   return null;
   // };
 
+  // interface CustomXAxisLabelProps {
+  //   x: number;
+  //   y: number;
+  //   payload: { value: string };
+  // }
+  
+  // const CustomXAxisLabel: React.FC<CustomXAxisLabelProps> = ({ x, y, payload }) => (
+  //   <text x={x} y={y} dy={16} textAnchor="middle" fill="#666">
+  //     {payload.value}
+  //   </text>
+  // );
+
   const CustomTooltip = ({
     active,
     payload,
@@ -588,19 +462,49 @@ function Charts() {
       const event = new Date(label);
       const dateOnly = event.toString().split("G");
       // console.log(payload[0]?.value);
-    if (active && payload) {
-      console.log(payload[0].payload.dID);
+    if (active && payload && payload[0]!==undefined) {
+      console.log(payload);
     return (
       <div className="bg-white border-2 border-black p-2">
-        <p>{payload[0].payload.dID}</p>
+        <div className="flex flex-row justify-start items-center gap-1"> 
+        <p>{payload[0]?.payload.dID}</p>
+        <div className={`w-4 h-4 bg-[${payload[0].stroke}]`}></div>
+        </div>
       <p className="label">{`${dateOnly[0]}`}</p>
-      <p>{`${payload[0].value}`}</p>
+      {payload?.map((item:any)=>{
+        return(
+          <p key={item}>{`${item.name}:${item.value}`}</p>
+        )
+      })}
     </div>
     );
     }
 
     return null;
 };
+
+
+  const handleSingleDeviceClick = () =>{
+    showModal();
+    setIndividualDevice(true);
+    setMultipleDevice(false);
+    setType1(true);
+    setType2(false);
+    setType3(false);
+    setType4(false);
+    setType5(false);
+    setType6(false);
+  }
+
+  const handleMultipleDeviceClick = () =>{
+    showMultipleModal();setIndividualDevice(false);setMultipleDevice(true)
+    setType1(true);
+    setType2(false);
+    setType3(false);
+    setType4(false);
+    setType5(false);
+    setType6(false);
+  }
   
   useEffect(()=>{
     
@@ -612,12 +516,12 @@ function Charts() {
       {/* <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
         <p>Devices</p>
       </Modal> */}
-      <Modal title="Select Single Device" open={isModalOpen} onOk={handleOk} onCancel={handleCancel} width={1000}>
+      <Modal title="Select Single Device" open={isModalOpen} onOk={handleOk} onCancel={handleCancel} width={700}>
         <p>Devices</p>
         <div className="flex relative">
-          <input type="text" className=' w-[90%] ml-4 text-lg input_field px-1 py-1' placeholder='Enter Device IDs' ref={inputRef}/>
+          <input type="text" className=' w-[90%]  text-lg input_field px-1 py-1' placeholder='Enter Device IDs' ref={inputRef}/>
           {/* <Image src={SearchIcon} alt="" className='absolute right-16 cursor-pointer top-1' width={30} onClick={searchDevices}/> */}
-          <GrLinkNext className='absolute right-20 cursor-pointer top-1 w-10' onClick={searchDevices}/>
+          <GrLinkNext className='absolute right-16 cursor-pointer top-3 w-10' onClick={searchDevices}/>
         </div>
         {/* <div className="grid grid-cols-10 w-full gap-4 mt-4">
           {alldeviceList.map((item)=>{
@@ -630,14 +534,14 @@ function Charts() {
           })}
         </div> */}
       </Modal>
-      <Modal title="Select Multiple Device" open={isMultipleModalOpen} onOk={handleMultipleOk} onCancel={handleMultipleCancel} width={1000}>
+      <Modal title="Select Multiple Device" open={isMultipleModalOpen} onOk={handleMultipleOk} onCancel={handleMultipleCancel} width={700}>
         <p>Devices</p>
         <div className="flex relative">
           <input type="text" className=' w-[90%] ml-4 text-lg input_field px-1 py-1' placeholder='Enter Device IDs' ref={inputRef} onChange={(e)=>setSelectedMultiple(e.currentTarget.value)}/>
           {/* <Image src={SearchIcon} alt="" className='absolute right-16 cursor-pointer top-1' width={30} onClick={searchDevices}/> */}
-          <GrLinkNext className='absolute right-20 cursor-pointer top-2 w-10 h-' onClick={searchDevices}/>
+          <GrLinkNext className='absolute right-16 cursor-pointer top-2 w-10 h-' onClick={searchDevices}/>
         </div>
-        <div className="grid grid-cols-10 w-full gap-4 mt-4">
+        {/* <div className="grid grid-cols-10 w-full gap-4 mt-4">
           {alldeviceList.map((item)=>{
             return (
               <div key={item.dID} className={`w-full h-[10vh] bg-black rounded-md cursor-pointer`} onClick={()=>handleMultipleDevice(item)}>
@@ -645,9 +549,9 @@ function Charts() {
               </div>
             )
           })}
-        </div>
+        </div> */}
       </Modal>
-      <div className="h-[50px] w-full fixed flex justify-between items-center border-b-2">
+      <div className="h-[50px] w-full fixed flex justify-between items-center border-b-2 bg-white">
         <div className="flex flex-row gap-[15%]">
             <Image src={Logo} alt="" width={110}/>
             <div className="flex flex-row gap-4">
@@ -664,11 +568,12 @@ function Charts() {
           <input type="text" className=' w-[90%] ml-4 text-lg input_field px-1 py-1' placeholder='Enter Device IDs' ref={inputRef}/>
           <Image src={SearchIcon} alt="" className='absolute right-16 cursor-pointer top-1' width={30} onClick={searchDevices}/>
       </div> */}
-      <div className="w-full flex flex-row p-2 mt-[50px]">
-        <button className='bg-slate-400 text-white p-2 rounded-md' onClick={()=>{showModal();setIndividualDevice(true);setMultipleDevice(false)}}>INDIVIDUAL DEVICE</button>
-        <button className='bg-slate-400 text-white p-2 rounded-md'onClick={()=>{showMultipleModal();setIndividualDevice(false);setMultipleDevice(true)}}>MULTIPLE DEVICE</button>
+      <div className="w-[100vw] flex justify-between items-center flex-row p-2 mt-[50px] gap-4">
+        <button className='bg-slate-400 text-white p-2 rounded-md basis-[50%]' onClick={()=>handleSingleDeviceClick()}>INDIVIDUAL DEVICE</button>
+        <button className='bg-slate-400 text-white p-2 rounded-md basis-[50%]'onClick={()=>handleMultipleDeviceClick()}>MULTIPLE DEVICE</button>
       </div>
-      <Spin tip="Loading..." spinning={isChartLoading}>
+      <div className="w-[100vw]">
+      <Spin tip="Loading..." spinning={isChartLoading} className='w-[100vw]'>
       <select
                         name=""
                         id=""
@@ -691,7 +596,7 @@ function Charts() {
                         <option value="3H">Last 24 Hours</option>
                         <option value="1D">Last 7 Days</option>
                       </select>
-      <div className="w-full h-[90vh]">
+      <div className="w-[100vw] h-[90vh]">
       {multipleDevice && <div className='radiobtn_div'>
                       <label style={{display: 'flex', gap: '3px'}}>
                         <input
@@ -861,9 +766,9 @@ function Charts() {
                       </label>
                       
                     </div>}
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width="100%" height="80%">
                     <LineChart
-                      width={500}
+                      width={900}
                       height={300}
                       data={
                         // chartData?.length > 0 ?
@@ -915,7 +820,7 @@ function Charts() {
                         tickCount={7}
                       />
                       {type1 &&
-                        chartData.map((item:any, index:number) => (
+                        chartData?.map((item:any, index:number) => (
                           <>
                           {/* <Tooltips labelClassName="dID" label={item?.dID === undefined ? null:'dID'} />  */}
                           <Tooltip content={<CustomTooltip />} />
@@ -940,8 +845,8 @@ function Charts() {
                           </>
                         ))}
                       {type2 &&
-                        chartData.map((item:any, index:number) => (
-                          <><Tooltips labelClassName="dID" label={item?.dID === undefined ? null:'dID'} /> 
+                        chartData?.map((item:any, index:number) => (
+                          <><Tooltip content={<CustomTooltip />} /> 
                           <Line
                             type="monotone"
                             data={item.data}
@@ -961,10 +866,9 @@ function Charts() {
                           </>
                         ))}
                       {type3 &&
-                        chartData.map((item:any, index:number) => (
+                        chartData?.map((item:any, index:number) => (
                           <>
-                          <Tooltips labelClassName="dID" label={item?.dID === undefined ? null:'dID'} /> 
-                          
+                          <Tooltip content={<CustomTooltip />} />
                           <Line
                             type="monotone"
                             data={item.data}
@@ -984,9 +888,9 @@ function Charts() {
                           </>
                         ))}
                       {type6 &&
-                        chartData.map((item:any, index:number) => (
+                        chartData?.map((item:any, index:number) => (
                           <>
-                          <Tooltips labelClassName="dID" label={item?.dID === undefined ? null:'dID'} /> 
+                          <Tooltip content={<CustomTooltip />} />
                           <Line
                             type="monotone"
                             data={item.data}
@@ -1006,9 +910,9 @@ function Charts() {
                           </>
                         ))}
                       {type4 &&
-                        chartData.map((item:any, index:number) => (
+                        chartData?.map((item:any, index:number) => (
                           <>
-                          <Tooltips labelClassName="dID" label={item?.dID === undefined ? null:'dID'} /> 
+                          <Tooltip content={<CustomTooltip />} />
                           <Line
                             type="monotone"
                             data={item.data}
@@ -1028,9 +932,9 @@ function Charts() {
                           </>
                         ))}
                       {type5 &&
-                        chartData.map((item:any, index:number) => (
+                        chartData?.map((item:any, index:number) => (
                           <>
-                          <Tooltips labelClassName="dID" label={item?.dID === undefined ? null:'dID'} /> 
+                          <Tooltip content={<CustomTooltip />} />
                           <Line type="monotone" connectNulls key={item.data.dID} dataKey="rh" stroke={individualDevice?"#000000":colors[index]} strokeWidth={3} data={item.data} label={(entry) => {
                             // Adjust the position of the tooltip for specific lines
                             if (entry.dataKey === "rh") {
@@ -1048,7 +952,7 @@ function Charts() {
           <CartesianGrid strokeDasharray="3 3" />
           <YAxis />
           {type1 &&
-                        chartData.map((item:any, index:number) => (
+                        chartData?.map((item:any, index:number) => (
                           <Line
                             type="monotone"
                             data={item.data}
@@ -1060,7 +964,7 @@ function Charts() {
                           />
                         ))}
           {type2 &&
-                        chartData.map((item:any, index:number) => (
+                        chartData?.map((item:any, index:number) => (
                           <Line
                             type="monotone"
                             data={item.data}
@@ -1072,7 +976,7 @@ function Charts() {
                           />
                         ))}
                         {type3 &&
-                        chartData.map((item:any, index:number) => (
+                        chartData?.map((item:any, index:number) => (
                           <Line
                             type="monotone"
                             data={item.data}
@@ -1084,7 +988,7 @@ function Charts() {
                           />
                         ))}
                         {type6 &&
-                        chartData.map((item:any, index:number) => (
+                        chartData?.map((item:any, index:number) => (
                           <Line
                             type="monotone"
                             data={item.data}
@@ -1096,7 +1000,7 @@ function Charts() {
                           />
                         ))}
                         {type4 &&
-                        chartData.map((item:any, index:number) => (
+                        chartData?.map((item:any, index:number) => (
                           <Line
                             type="monotone"
                             data={item.data}
@@ -1108,7 +1012,7 @@ function Charts() {
                           />
                         ))}
                         {type5 &&
-                        chartData.map((item:any, index:number) => (
+                        chartData?.map((item:any, index:number) => (
                           <Line
                             type="monotone"
                             data={item.data}
@@ -1141,6 +1045,7 @@ function Charts() {
       </ResponsiveContainer> */} 
                   </div>
                   </Spin>
+                  </div>
                   <ToastContainer/>
     </div>
   )
