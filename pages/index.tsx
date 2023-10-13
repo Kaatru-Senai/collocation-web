@@ -509,20 +509,20 @@ const parametersRef = useRef<Select | null>(null);
         <div className="basis-[100%] w-full flex flex-row gap-4 mx-2 text-white">
           <div className="basis-[33.3%] bg-slate-400 h-[12vh] rounded-md flex flex-col justify-evenly">
             <div className="flex justify-center items-center">
-              <p>Stationary {sCount}/105</p>
+              <p>Stationary {sCount}/97</p>
             </div>
             <div className="w-full flex flex-row justify-evenly items-center gap-4 px-2">
                 <button className={`border-2 py-[1vh] px-2 rounded-md cursor-pointer flex-auto ${activeButton==1?'bg-orange-300 flex flex-row justify-between items-center':''}`} onClick={()=>{if(activeButton!==1){setActiveButton(1);setDataOnFilter(1)}}}>{(activeButton==1) && <span><FcPrevious className={`${isPrevThere?'block':'hidden'}`} onClick={goPrevFilteredData}/></span>}Active ({sCount}){(activeButton==1) && <span><FcNext className={`${isNextThere?'block':'hidden'}`} onClick={goNextFilteredData}/></span>}</button>
-                <button className={`border-2 py-[1vh] px-2 rounded-md cursor-pointer flex-auto ${activeButton==2?'bg-orange-300 flex flex-row justify-between items-center':''}`} onClick={()=>{if(activeButton!==2){setActiveButton(2);setDataOnFilter(2)}}}>{(activeButton==2) && <span><FcPrevious className={`${isPrevThere?'block':'hidden'}`} onClick={goPrevFilteredData}/></span>}InActive ({105-sCount}){(activeButton==2) && <span><FcNext className={`${isNextThere?'block':'hidden'}`} onClick={goNextFilteredData}/></span>}</button>
+                <button className={`border-2 py-[1vh] px-2 rounded-md cursor-pointer flex-auto ${activeButton==2?'bg-orange-300 flex flex-row justify-between items-center':''}`} onClick={()=>{if(activeButton!==2){setActiveButton(2);setDataOnFilter(2)}}}>{(activeButton==2) && <span><FcPrevious className={`${isPrevThere?'block':'hidden'}`} onClick={goPrevFilteredData}/></span>}InActive ({97-sCount}){(activeButton==2) && <span><FcNext className={`${isNextThere?'block':'hidden'}`} onClick={goNextFilteredData}/></span>}</button>
             </div>
           </div>
           <div className="basis-[33.3%] bg-slate-400 h-[12vh] rounded-md flex flex-col justify-evenly">
             <div className="flex justify-center items-center">
-              <p>Mobile {mCount}/70</p>
+              <p>Mobile {mCount}/63</p>
             </div>
             <div className="w-full flex flex-row justify-evenly items-center gap-4 px-2">
                 <button className={`border-2 py-[1vh] px-2 rounded-md cursor-pointer flex-auto ${activeButton==3?'bg-orange-300 flex flex-row justify-between items-center':''}`} onClick={()=>{if(activeButton!==3){setActiveButton(3);setDataOnFilter(3)}}}>{(activeButton==3) && <span><FcPrevious className={`${isPrevThere?'block':'hidden'}`} onClick={goPrevFilteredData}/></span>}Active ({mCount}){(activeButton==3) && <span><FcNext className={`${isNextThere?'block':'hidden'}`} onClick={goNextFilteredData}/></span>}</button>
-                <button className={`border-2 py-[1vh] px-2 rounded-md cursor-pointer flex-auto ${activeButton==4?'bg-orange-300 flex flex-row justify-between items-center':''}`} onClick={()=>{if(activeButton!==4){setActiveButton(4);setDataOnFilter(4)}}}>{(activeButton==4) && <span><FcPrevious className={`${isPrevThere?'block':'hidden'}`} onClick={goPrevFilteredData}/></span>}InActive ({70-mCount}){(activeButton==4) && <span><FcNext className={`${isNextThere?'block':'hidden'}`} onClick={goNextFilteredData}/></span>}</button>
+                <button className={`border-2 py-[1vh] px-2 rounded-md cursor-pointer flex-auto ${activeButton==4?'bg-orange-300 flex flex-row justify-between items-center':''}`} onClick={()=>{if(activeButton!==4){setActiveButton(4);setDataOnFilter(4)}}}>{(activeButton==4) && <span><FcPrevious className={`${isPrevThere?'block':'hidden'}`} onClick={goPrevFilteredData}/></span>}InActive ({63-mCount}){(activeButton==4) && <span><FcNext className={`${isNextThere?'block':'hidden'}`} onClick={goNextFilteredData}/></span>}</button>
             </div>
           </div>
           <div className="basis-[33.3%] bg-slate-400 h-[12vh] rounded-md flex flex-col justify-evenly">
