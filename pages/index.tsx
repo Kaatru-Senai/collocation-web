@@ -833,7 +833,7 @@ const parametersRef = useRef<Select | null>(null);
     switch(val){
       case 1:
         // console.log(data);
-        let filteredData1 = data.filter((item)=>item.status===true && item.dID.includes('SG'))
+        let filteredData1 = data.filter((item)=>item.status===true && /\b(SG)\d+\b/.test(item?.dID))
         console.log(filteredData1.length)
         setFilteredData(filteredData1)
         filteredData1.length > 15 ? setIsNextThere(true) : setIsNextThere(false);
@@ -841,7 +841,7 @@ const parametersRef = useRef<Select | null>(null);
         break;
       case 2:
         // console.log(data);
-        let filteredData2 = data.filter((item)=>item.status===false && item.dID.includes('SG'))
+        let filteredData2 = data.filter((item)=>item.status===false && /\b(SG)\d+\b/.test(item?.dID))
         console.log(filteredData2)
         filteredData2.length > 15 ? setIsNextThere(true) : setIsNextThere(false);
         setFilteredData(filteredData2)
@@ -849,7 +849,7 @@ const parametersRef = useRef<Select | null>(null);
         break;
       case 3:
         // console.log(data);
-        let filteredData3 = data.filter((item)=>item.status===true && item.dID.includes('MG'))
+        let filteredData3 = data.filter((item)=>item.status===true && /\b(MG)\d+\b/.test(item?.dID))
         console.log(filteredData3)
         filteredData3.length > 15 ? setIsNextThere(true) : setIsNextThere(false);
         setFilteredData(filteredData3)
@@ -857,7 +857,7 @@ const parametersRef = useRef<Select | null>(null);
         break;
       case 4:
         // console.log(data);
-        let filteredData4 = data.filter((item)=>item.status===false && item.dID.includes('MG'))
+        let filteredData4 = data.filter((item)=>item.status===false && /\b(MG)\d+\b/.test(item?.dID))
         console.log(filteredData4)
         filteredData4.length > 15 ? setIsNextThere(true) : setIsNextThere(false);
         setFilteredData(filteredData4)
@@ -865,7 +865,7 @@ const parametersRef = useRef<Select | null>(null);
         break;
       case 5:
         // console.log(data);
-        let filteredData5 = data.filter((item)=>item.status===true && item.dID.includes('LMG'))
+        let filteredData5 = data.filter((item)=>item.status===true && /\b(LMG)\d+\b/.test(item?.dID))
         console.log(filteredData5)
         filteredData5.length > 15 ? setIsNextThere(true) : setIsNextThere(false);
         setFilteredData(filteredData5)
@@ -873,7 +873,7 @@ const parametersRef = useRef<Select | null>(null);
         break;
       case 6:
         // console.log(data);
-        let filteredData6 = data.filter((item)=>item.status===false && item.dID.includes('LMG'))
+        let filteredData6 = data.filter((item)=>item.status===false && /\b(LMG)\d+\b/.test(item?.dID))
         console.log(filteredData6)
         filteredData6.length > 15 ? setIsNextThere(true) : setIsNextThere(false);
         setFilteredData(filteredData6)
@@ -1064,51 +1064,58 @@ const parametersRef = useRef<Select | null>(null);
                 <tr key={item.dID} className={`values`}>
                 <td className={`fixed ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</td>
                 <td className='ml-[104px]'>{(item?.value as unknown as { pID: string | undefined })?.pID}</td>
-                {paramsArr?.includes('rHeap') && <td>{(item?.value as unknown as { rHeap: string | undefined })?.rHeap}</td>}
-                {paramsArr?.includes('lHeap') && <td>{(item?.value as unknown as { lHeap: string | undefined })?.lHeap}</td>}
-                {paramsArr?.includes('dTS') && <td>{(item?.value as unknown as { dTS: string | undefined })?.dTS}</td>}
-                {paramsArr?.includes('dUT') && <td>{(item?.value as unknown as { dUT: string | undefined })?.dUT}</td>}
+                {paramsArr.map((item1)=>{
+                  return(
+                    <>
+                      {item1?.includes('rHeap') && <td>{(item?.value as unknown as { rHeap: string | undefined })?.rHeap}</td>}
+                {item1?.includes('lHeap') && <td>{(item?.value as unknown as { lHeap: string | undefined })?.lHeap}</td>}
+                {item1?.includes('dTS') && <td>{(item?.value as unknown as { dTS: string | undefined })?.dTS}</td>}
+                {item1?.includes('dUT') && <td>{(item?.value as unknown as { dUT: string | undefined })?.dUT}</td>}
                 {/* <td>{item.value?.dTS}</td> */}
-                {paramsArr?.includes('lat') && <td>{(item?.value as unknown as { lat: string | undefined })?.lat}</td>}
-                {paramsArr?.includes('nso') && <td>{(item?.value as unknown as { nso: string | undefined })?.nso}</td>}
-                {paramsArr?.includes('long') && <td>{(item?.value as unknown as { long: string | undefined })?.long}</td>}
-                {paramsArr?.includes('ewo') && <td>{(item?.value as unknown as { ewo: string | undefined })?.ewo}</td>}
-                {paramsArr?.includes('alt') && <td>{(item?.value as unknown as { alt: string | undefined })?.alt}</td>}
-                {paramsArr?.includes('sog') && <td>{(item?.value as unknown as { sog: string | undefined })?.sog}</td>}
-                {paramsArr?.includes('cog') && <td>{(item?.value as unknown as { cog: string | undefined })?.cog}</td>}
-                {paramsArr?.includes('hdop') && <td>{(item?.value as unknown as { hdop: string | undefined })?.hdop}</td>}
-                {paramsArr?.includes('vdop') && <td>{(item?.value as unknown as { vdop: string | undefined })?.vdop}</td>}
-                {paramsArr?.includes('pdop') && <td>{(item?.value as unknown as { pdop: string | undefined })?.pdop}</td>}
-                {paramsArr?.includes('age') && <td>{(item?.value as unknown as { age: string | undefined })?.age}</td>}
-                {paramsArr?.includes('temp') && <td>{(item?.value as unknown as { temp: string | undefined })?.temp}</td>}
-                {paramsArr?.includes('rh') && <td>{(item?.value as unknown as { rh: string | undefined })?.rh}</td>}
-                {paramsArr?.includes('sPM1') && <td>{(item?.value as unknown as { sPM1: string | undefined })?.sPM1}</td>}
-                {paramsArr?.includes('sPM2') && <td>{(item?.value as unknown as { sPM2: string | undefined })?.sPM2}</td>}
-                {paramsArr?.includes('sPM4') && <td>{(item?.value as unknown as { sPM4: string | undefined })?.sPM4}</td>}
-                {paramsArr?.includes('sPM10') && <td>{(item?.value as unknown as { sPM10: string | undefined })?.sPM10}</td>}
-                {paramsArr?.includes('sNPMp5') && <td>{(item?.value as unknown as { sNPMp5: string | undefined })?.sNPMp5}</td>}
-                {paramsArr?.includes('sNPM1') && <td>{(item?.value as unknown as { sNPM1: string | undefined })?.sNPM1}</td>}
-                {paramsArr?.includes('sNPM2') && <td>{(item?.value as unknown as { sNPM2: string | undefined })?.sNPM2}</td>}
-                {paramsArr?.includes('sNPM4') && <td>{(item?.value as unknown as { sNPM4: string | undefined })?.sNPM4}</td>}
-                {paramsArr?.includes('sNPM10') && <td>{(item?.value as unknown as { sNPM10: string | undefined })?.sNPM10}</td>}
-                {paramsArr?.includes('sTPS') && <td>{(item?.value as unknown as { sTPS: string | undefined })?.sTPS}</td>}
-                {paramsArr?.includes('sTemp') && <td>{(item?.value as unknown as { sTemp: string | undefined })?.sTemp}</td>}
-                {paramsArr?.includes('sRh') && <td>{(item?.value as unknown as { sRh: string | undefined })?.sRh}</td>}
-                {paramsArr?.includes('sVocI') && <td>{(item?.value as unknown as { sVocI: string | undefined })?.sVocI}</td>}
-                {paramsArr?.includes('sNoxI') && <td>{(item?.value as unknown as { sNoxI: string | undefined })?.sNoxI}</td>}
-                {paramsArr?.includes('aFanTacho') && <td>{(item?.value as unknown as { aFanTacho: string | undefined })?.aFanTacho}</td>}
-                {paramsArr?.includes('gIR') && <td>{(item?.value as unknown as { gIR: string | undefined })?.gIR}</td>}
-                {paramsArr?.includes('gLUM') && <td>{(item?.value as unknown as { gLUM: string | undefined })?.gLUM}</td>}
-                {paramsArr?.includes('gUV') && <td>{(item?.value as unknown as { gUV: string | undefined })?.gUV}</td>}
-                {paramsArr?.includes('pIDar') && <td>{(item?.value as unknown as { pIDar: string | undefined })?.pIDar}</td>}
-                {paramsArr?.includes('aUT') && <td>{(item?.value as unknown as { aUT: string | undefined })?.aUT}</td>}
-                {paramsArr?.includes('ax') && <td>{(item?.value as unknown as { ax: string | undefined })?.ax}</td>}
-                {paramsArr?.includes('ay') && <td>{(item?.value as unknown as { ay: string | undefined })?.ay}</td>}
-                {paramsArr?.includes('az') && <td>{(item?.value as unknown as { az: string | undefined })?.az}</td>}
-                {paramsArr?.includes('gx') && <td>{(item?.value as unknown as { gx: string | undefined })?.gx}</td>}
-                {paramsArr?.includes('gy') && <td>{(item?.value as unknown as { gy: string | undefined })?.gy}</td>}
-                {paramsArr?.includes('gz') && <td>{(item?.value as unknown as { gz: string | undefined })?.gz}</td>}
-                {paramsArr?.includes('accTemp') && <td>{(item?.value as unknown as { accTemp: string | undefined })?.accTemp}</td>}
+                {item1?.includes('lat') && <td>{(item?.value as unknown as { lat: string | undefined })?.lat}</td>}
+                {item1?.includes('nso') && <td>{(item?.value as unknown as { nso: string | undefined })?.nso}</td>}
+                {item1?.includes('long') && <td>{(item?.value as unknown as { long: string | undefined })?.long}</td>}
+                {item1?.includes('ewo') && <td>{(item?.value as unknown as { ewo: string | undefined })?.ewo}</td>}
+                {item1?.includes('alt') && <td>{(item?.value as unknown as { alt: string | undefined })?.alt}</td>}
+                {item1?.includes('sog') && <td>{(item?.value as unknown as { sog: string | undefined })?.sog}</td>}
+                {item1?.includes('cog') && <td>{(item?.value as unknown as { cog: string | undefined })?.cog}</td>}
+                {item1?.includes('hdop') && <td>{(item?.value as unknown as { hdop: string | undefined })?.hdop}</td>}
+                {item1?.includes('vdop') && <td>{(item?.value as unknown as { vdop: string | undefined })?.vdop}</td>}
+                {item1?.includes('pdop') && <td>{(item?.value as unknown as { pdop: string | undefined })?.pdop}</td>}
+                {item1?.includes('age') && <td>{(item?.value as unknown as { age: string | undefined })?.age}</td>}
+                {item1?.includes('temp') && <td>{(item?.value as unknown as { temp: string | undefined })?.temp}</td>}
+                {item1?.includes('rh') && <td>{(item?.value as unknown as { rh: string | undefined })?.rh}</td>}
+                {item1?.includes('sPM1') && <td>{(item?.value as unknown as { sPM1: string | undefined })?.sPM1}</td>}
+                {item1?.includes('sPM2') && <td>{(item?.value as unknown as { sPM2: string | undefined })?.sPM2}</td>}
+                {item1?.includes('sPM4') && <td>{(item?.value as unknown as { sPM4: string | undefined })?.sPM4}</td>}
+                {item1?.includes('sPM10') && <td>{(item?.value as unknown as { sPM10: string | undefined })?.sPM10}</td>}
+                {item1?.includes('sNPMp5') && <td>{(item?.value as unknown as { sNPMp5: string | undefined })?.sNPMp5}</td>}
+                {item1?.includes('sNPM1') && <td>{(item?.value as unknown as { sNPM1: string | undefined })?.sNPM1}</td>}
+                {item1?.includes('sNPM2') && <td>{(item?.value as unknown as { sNPM2: string | undefined })?.sNPM2}</td>}
+                {item1?.includes('sNPM4') && <td>{(item?.value as unknown as { sNPM4: string | undefined })?.sNPM4}</td>}
+                {item1?.includes('sNPM10') && <td>{(item?.value as unknown as { sNPM10: string | undefined })?.sNPM10}</td>}
+                {item1?.includes('sTPS') && <td>{(item?.value as unknown as { sTPS: string | undefined })?.sTPS}</td>}
+                {item1?.includes('sTemp') && <td>{(item?.value as unknown as { sTemp: string | undefined })?.sTemp}</td>}
+                {item1?.includes('sRh') && <td>{(item?.value as unknown as { sRh: string | undefined })?.sRh}</td>}
+                {item1?.includes('sVocI') && <td>{(item?.value as unknown as { sVocI: string | undefined })?.sVocI}</td>}
+                {item1?.includes('sNoxI') && <td>{(item?.value as unknown as { sNoxI: string | undefined })?.sNoxI}</td>}
+                {item1?.includes('aFanTacho') && <td>{(item?.value as unknown as { aFanTacho: string | undefined })?.aFanTacho}</td>}
+                {item1?.includes('gIR') && <td>{(item?.value as unknown as { gIR: string | undefined })?.gIR}</td>}
+                {item1?.includes('gLUM') && <td>{(item?.value as unknown as { gLUM: string | undefined })?.gLUM}</td>}
+                {item1?.includes('gUV') && <td>{(item?.value as unknown as { gUV: string | undefined })?.gUV}</td>}
+                {item1?.includes('pIDar') && <td>{(item?.value as unknown as { pIDar: string | undefined })?.pIDar}</td>}
+                {item1?.includes('aUT') && <td>{(item?.value as unknown as { aUT: string | undefined })?.aUT}</td>}
+                {item1?.includes('ax') && <td>{(item?.value as unknown as { ax: string | undefined })?.ax}</td>}
+                {item1?.includes('ay') && <td>{(item?.value as unknown as { ay: string | undefined })?.ay}</td>}
+                {item1?.includes('az') && <td>{(item?.value as unknown as { az: string | undefined })?.az}</td>}
+                {item1?.includes('gx') && <td>{(item?.value as unknown as { gx: string | undefined })?.gx}</td>}
+                {item1?.includes('gy') && <td>{(item?.value as unknown as { gy: string | undefined })?.gy}</td>}
+                {item1?.includes('gz') && <td>{(item?.value as unknown as { gz: string | undefined })?.gz}</td>}
+                {item1?.includes('accTemp') && <td>{(item?.value as unknown as { accTemp: string | undefined })?.accTemp}</td>}
+                    </>
+                  )
+                  })}
+                
                 </tr>  
               )
             })}  
