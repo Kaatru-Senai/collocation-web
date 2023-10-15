@@ -93,7 +93,7 @@ export default function Home() {
   // const [uLastCol,setLCol]=useState(upperFirstCol);
   const [lLastCol,setlLastCol]=useState(lowerLastCol);
   const [uLastCol,setuLastCol]=useState(upperLastCol);
-  const [isTableView,setIsTableView]=useState(false);
+  const [isTableView,setIsTableView]=useState(true);
   const [isLoading , setIsLoading] = useState(true);
   const [activeButton,setActiveButton] = useState(0);
   const [filteredData,setFilteredData] = useState<{
@@ -195,7 +195,7 @@ const parametersRef = useRef<Select | null>(null);
   const getSocketUrl = useCallback(() => {
     return new Promise<string>((resolve) => {
       setTimeout(() => {
-        resolve('ws://localhost:3200/');
+        resolve('ws://65.1.2.188/');
       }, 2000);
     });
   }, []);
@@ -414,7 +414,7 @@ const parametersRef = useRef<Select | null>(null);
     setCurrentPage(data?.slice(0,15));
     setTimeout(()=>{
       setIsLoading(false);
-    },5000)
+    },10000)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
   

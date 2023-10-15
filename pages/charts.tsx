@@ -252,7 +252,7 @@ function Charts() {
       } else {
         reqData = await axios
             .get(
-                `http://localhost:3200/stale/filter?devices=${queryDevices}&filter=${time}`,
+                `http://65.1.2.188/stale/filter?devices=${queryDevices}&filter=${time}`,
 
             )
             .then((value) => value.data);

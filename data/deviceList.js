@@ -247,9 +247,9 @@ export const defaultParameters=[
     { value: 'sVocI', label: 'sVocI' ,desc:'Volatile organic compound'},
     { value: 'sNoxI', label: 'sNoxI' ,desc:'NOx compunds'},
     { value: 'aFanTacho', label: 'aFanTacho' ,desc:`Fan's tachometer reading`},
-    // { value: 'gIR', label: 'gIR' ,desc:'Time obtained by the device from the NTP server'},
-    // { value: 'gLUM', label: 'gLUM' ,desc:'Time obtained by the device from the NTP server'},
-    // { value: 'gUV', label: 'gUV' ,desc:'Time obtained by the device from the NTP server'},
+    { value: 'gIR', label: 'gIR' ,desc:'Time obtained by the device from the NTP server'},
+    { value: 'gLUM', label: 'gLUM' ,desc:'Time obtained by the device from the NTP server'},
+    { value: 'gUV', label: 'gUV' ,desc:'Time obtained by the device from the NTP server'},
 
     { value: 'pIDar', label: 'pIDar' ,desc:'Packet ID denotes the serial number of the data packet. It is sent every 5 seconds from the device'},
     { value: 'aUT', label: 'aUT' ,desc:'How many minutes the ATMEGA2560 has been running. '},
