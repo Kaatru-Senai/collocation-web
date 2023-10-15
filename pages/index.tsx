@@ -1013,7 +1013,7 @@ const parametersRef = useRef<Select | null>(null);
         </div> 
       </div>
     </div>
-{isTableView &&      <><div className="w-full flex flex-row justify-between gap-4 fixed mt-[60px] z-[1]"> 
+{isTableView &&<><div className="w-full flex flex-row justify-between gap-4 fixed mt-[60px] z-[1]"> 
         <div className="basis-[100%] w-full flex flex-row gap-4 mx-2 text-white">
           <div className="basis-[33.3%] bg-slate-400 h-[12vh] rounded-md flex flex-col justify-evenly">
             <div className="flex justify-center items-center">
@@ -1117,19 +1117,19 @@ const parametersRef = useRef<Select | null>(null);
         </table>    
         </Spin>
       </div></>}
-      {!isTableView && <div className="flex flex-row mt-[8vh] w-[100vw] h-[90vh]">
+      {!isTableView && <div className="flex flex-row justify-center mt-[6vh] w-[100vw] h-[90vh] gap-[2px]">
         <div className="flex flex-col mt-[50px] gap-4 pb-[50px]">
           <div className="flex flex-col gap-[25px]">
           {uFirstCol.map((item:any)=>{
                 return(
-                  <div key={item.dID} className={`w-[60px] h-[25px]  border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+                  <div key={item.dID} className={`w-[60px] h-[25px]  border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500 text-white'}`}>{item.dID}</div>
                 )
               })}
             </div>
             <div className="flex flex-col gap-[25px] mt-[140px]">
               {lFirstCol.map((item:any)=>{
                 return(
-                  <div key={item.dID} className={`w-[60px] h-[25px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+                  <div key={item.dID} className={`w-[60px] h-[25px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500 text-white'}`}>{item.dID}</div>
                 )
               })}
           </div>
@@ -1138,133 +1138,133 @@ const parametersRef = useRef<Select | null>(null);
         <div className="flex flex-col gap-[45px] mt-[0px]">
           {SecondCol.map((item)=>{
             return(
-              <div key={item.dID} className={`w-[60px] h-[50px] p-4 border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+              <div key={item.dID} className={`w-[60px] h-[50px] p-4 border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500 text-white'}`}>{item.dID}</div>
             )
           })}
         </div>
         <div className="flex flex-col gap-[45px] mt-[47px] ">
           {ThirdCol.map((item)=>{
             return(
-              <div key={item.dID} className={`w-[60px] h-[50px]  border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+              <div key={item.dID} className={`w-[60px] h-[50px]  border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500 text-white'}`}>{item.dID}</div>
             )
           })}
         </div>
         <div className="flex flex-col gap-[45px] mt-[0px] h-[105vh]">
           {FourthCol.map((item)=>{
             return(
-              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500 text-white'}`}>{item.dID}</div>
             )
           })}
         </div>
         <div className="flex flex-col gap-[45px] mt-[47px]">
           {FifthCol.map((item)=>{
             return(
-              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500 text-white'}`}>{item.dID}</div>
             )
           })}
         </div>
         <div className="flex flex-col gap-[45px] mt-[0px] h-[105vh]">
           {SixthCol.map((item)=>{
             return(
-              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500 text-white'}`}>{item.dID}</div>
             )
           })}
         </div>
         <div className="flex flex-col gap-[45px] mt-[47px]">
           {SeventhCol.map((item)=>{
             return(
-              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500 text-white'}`}>{item.dID}</div>
             )
           })}
         </div>
         <div className="flex flex-col gap-[45px] mt-[0px] h-[105vh]">
           {EighthCol.map((item)=>{
             return(
-              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500 text-white'}`}>{item.dID}</div>
             )
           })}
         </div>
         <div className="flex flex-col gap-[45px] mt-[47px]">
           {NinthCol.map((item)=>{
             return(
-              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500 text-white'}`}>{item.dID}</div>
             )
           })}
         </div>
         <div className="flex flex-col gap-[45px] mt-[0px] h-[105vh]">
           {TenthCol.map((item)=>{
             return(
-              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500 text-white'}`}>{item.dID}</div>
             )
           })}
         </div>
         <div className="flex flex-col gap-[45px] mt-[47px]">
           {EleventhCol.map((item)=>{
             return(
-              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500 text-white'}`}>{item.dID}</div>
             )
           })}
         </div>
         <div className="flex flex-col gap-[45px] mt-[0px] h-[105vh]">
           {TwelvethCol.map((item)=>{
             return(
-              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500 text-white'}`}>{item.dID}</div>
             )
           })}
         </div>
         <div className="flex flex-col gap-[45px] mt-[47px]">
           {ThirteenthCol.map((item)=>{
             return(
-              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500 text-white'}`}>{item.dID}</div>
             )
           })}
         </div>
         <div className="flex flex-col gap-[45px] mt-[0px] h-[105vh]">
           {FourteenthCol.map((item)=>{
             return(
-              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500 text-white'}`}>{item.dID}</div>
             )
           })}
         </div>
         <div className="flex flex-col gap-[45px] mt-[47px]">
           {FifteenthCol.map((item)=>{
             return(
-              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500 text-white'}`}>{item.dID}</div>
             )
           })}
         </div>
         <div className="flex flex-col gap-[45px] mt-[0px] h-[105vh]">
           {SixteenthCol.map((item)=>{
             return(
-              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500 text-white'}`}>{item.dID}</div>
             )
           })}
         </div>
         <div className="flex flex-col gap-[45px] mt-[47px]">
           {SeventeenthCol.map((item)=>{
             return(
-              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500 text-white'}`}>{item.dID}</div>
             )
           })}
         </div>
         <div className="flex flex-col gap-[45px] mt-[0px] h-[105vh]">
           {EighteenthCol.map((item)=>{
             return(
-              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500 text-white'}`}>{item.dID}</div>
             )
           })}
         </div>
         <div className="flex flex-col gap-[45px] mt-[47px]">
           {NineteenthCol.map((item)=>{
             return(
-              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500 text-white'}`}>{item.dID}</div>
             )
           })}
         </div>
         <div className="flex flex-col gap-[45px] mt-[0px] h-[105vh]">
           {TwentyethCol.map((item)=>{
             return(
-              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+              <div key={item.dID} className={`w-[60px] h-[50px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500 text-white'}`}>{item.dID}</div>
             )
           })}
         </div>
@@ -1272,14 +1272,14 @@ const parametersRef = useRef<Select | null>(null);
             <div className="flex flex-col gap-[25px]">
               {lLastCol.map((item:any)=>{
                 return(
-                  <div key={item.dID} className={`w-[60px] h-[25px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+                  <div key={item.dID} className={`w-[60px] h-[25px] border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500 text-white'}`}>{item.dID}</div>
                 )
               })}
           </div>
           <div className="flex flex-col gap-[25px]  mt-[140px]">
           {uLastCol.map((item:any)=>{
                 return(
-                  <div key={item.dID} className={`w-[60px] h-[25px]  border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500'}`}>{item.dID}</div>
+                  <div key={item.dID} className={`w-[60px] h-[25px]  border-black border-[2px] text-black flex items-center justify-center ${item.status ? 'bg-white':'bg-red-500 text-white'}`}>{item.dID}</div>
                 )
               })}
             </div>

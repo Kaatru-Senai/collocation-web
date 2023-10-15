@@ -109,9 +109,9 @@ function Charts() {
     setIsChartLoading(true);
     handleOk();
     handleMultipleOk();
-    const inputValue = inputRef?.current?.value;
+    const inputValue = inputRef1?.current?.value;
     console.log(inputValue);
-    const devicesArr: string[] | undefined = inputRef?.current?.value.split(',');
+    const devicesArr: string[] | undefined = inputRef1?.current?.value.split(',');
     console.log(devicesArr);
     
     devicesArr?.map((item,index)=>{
@@ -119,20 +119,26 @@ function Charts() {
     })
     setSelectedDevices(devicesArr);
     getChartData('15M',devicesArr);
-    setTimeFrame('15M')
-    // const searchedDevices:any[] = [];
-    // devicesArr?.forEach((item1:string) => {
-    //   data.forEach((item2) => {
-    //     console.log(item1 == item2.dID)
-    //     if (item1 == item2.dID) {
-    //       searchedDevices.push(item2);
-    //     }
-    //   });
-    // });
-    // console.log(searchedDevices);
-    // setCurrentPage(searchedDevices);
+    setTimeFrame('15M') 
    }
-  const inputRef = useRef<HTMLInputElement | null>(null);
+   const searchMultipleDevices = () =>{
+    setIsChartLoading(true);
+    handleOk();
+    handleMultipleOk();
+    const inputValue = inputRef2?.current?.value;
+    console.log(inputValue);
+    const devicesArr: string[] | undefined = inputRef2?.current?.value.split(',');
+    console.log(devicesArr);
+    
+    devicesArr?.map((item,index)=>{
+      selectedDeviceData.push({deviceId:item,color:colors[index]})
+    })
+    setSelectedDevices(devicesArr);
+    getChartData('15M',devicesArr);
+    setTimeFrame('15M') 
+   }
+  const inputRef1 = useRef<HTMLInputElement | null>(null);
+  const inputRef2 = useRef<HTMLInputElement | null>(null);
   const [chartData, setChartData] = useState<any>();
   type finalMinMaxType = {
     min: {
@@ -384,8 +390,8 @@ function Charts() {
             ? item.dID
             : selectedMultiple + "," + item.dID
         );
-        if (inputRef?.current) {
-          inputRef.current.value =
+        if (inputRef1?.current) {
+          inputRef1.current.value =
             selectedMultiple === undefined
               ? item.dID
               : selectedMultiple + "," + item.dID;
@@ -519,7 +525,7 @@ function Charts() {
       <Modal title="Select Single Device" open={isModalOpen} onOk={handleOk} onCancel={handleCancel} width={700}>
         <p>Devices</p>
         <div className="flex relative">
-          <input type="text" className=' w-[90%]  text-lg input_field px-1 py-1' placeholder='Enter Device IDs' ref={inputRef}/>
+          <input type="text" className=' w-[90%]  text-lg input_field px-1 py-1' placeholder='Enter Device IDs' ref={inputRef1}/>
           {/* <Image src={SearchIcon} alt="" className='absolute right-16 cursor-pointer top-1' width={30} onClick={searchDevices}/> */}
           <GrLinkNext className='absolute right-16 cursor-pointer top-3 w-10' onClick={searchDevices}/>
         </div>
@@ -537,9 +543,9 @@ function Charts() {
       <Modal title="Select Multiple Device" open={isMultipleModalOpen} onOk={handleMultipleOk} onCancel={handleMultipleCancel} width={700}>
         <p>Devices</p>
         <div className="flex relative">
-          <input type="text" className=' w-[90%] ml-4 text-lg input_field px-1 py-1' placeholder='Enter Device IDs' ref={inputRef} onChange={(e)=>setSelectedMultiple(e.currentTarget.value)}/>
+          <input type="text" className=' w-[90%] ml-4 text-lg input_field px-1 py-1' placeholder='Enter Device IDs' ref={inputRef2} onChange={(e)=>setSelectedMultiple(e.currentTarget.value)}/>
           {/* <Image src={SearchIcon} alt="" className='absolute right-16 cursor-pointer top-1' width={30} onClick={searchDevices}/> */}
-          <GrLinkNext className='absolute right-16 cursor-pointer top-2 w-10 h-' onClick={searchDevices}/>
+          <GrLinkNext className='absolute right-16 cursor-pointer top-2 w-10 h-' onClick={searchMultipleDevices}/>
         </div>
         {/* <div className="grid grid-cols-10 w-full gap-4 mt-4">
           {alldeviceList.map((item)=>{
