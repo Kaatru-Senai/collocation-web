@@ -229,7 +229,7 @@ export const defaultParameters=[
     { value: 'hdop', label: 'hdop' ,desc:'hdop is used for measuring the UNI-GR1’s horizontal position precision'},
     { value: 'vdop', label: 'vdop' ,desc:'Time obtained by the device from the NTP server'},
     { value: 'pdop', label: 'pdop' ,desc:'Time obtained by the device from the NTP server'},
-    { value: 'age', label: 'age' ,desc:'Time obtained by the device from the NTP server'},
+    // { value: 'age', label: 'age' ,desc:'Time obtained by the device from the NTP server'},
     { value: 'temp', label: 'temp' ,desc:'Termperature measued by the SHT45 in degree centigrade'},
     { value: 'rh', label: 'rh' ,desc:'Relative humidity measured by the SHT45 in %'},
     { value: 'sPM1', label: 'sPM1' ,desc:'Particulate matter mass concentration measured in ug/m^3 '},

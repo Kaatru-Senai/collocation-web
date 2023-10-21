@@ -114,8 +114,8 @@ export default function Home() {
   const [paramsArr, setParamsArr] = useState<Array<string>>([       'rHeap', 'lHeap',
     'dTS',   'dUT',       'lat',   'nso',
     'long',  'ewo',       'alt',   'sog',
-    'cog',   'hdop',      'vdop',  'pdop',
-    'age',   'temp',      'rh',    'sPM1',
+    'cog',   'hdop', 'vdop', 'pdop',
+   'temp',      'rh',    'sPM1',
     'sPM2',  'sPM4',      'sPM10', 'sNPMp5',
     'sNPM1', 'sNPM2',     'sNPM4', 'sNPM10',
     'sTPS',  'sTemp',     'sRh',   'sVocI',
@@ -131,6 +131,7 @@ export default function Home() {
     let arr:string[] = []
     selectedParams.map((item:any)=>{
       if(item.value=="all"){
+        arr.length=0;
         SetParameters(defaultParameters);
         defaultParameters.map((item)=>{
           arr.push(item.value);
@@ -1080,9 +1081,9 @@ const parametersRef = useRef<Select | null>(null);
                 {item1?.includes('sog') && <td>{(item?.value as unknown as { sog: string | undefined })?.sog}</td>}
                 {item1?.includes('cog') && <td>{(item?.value as unknown as { cog: string | undefined })?.cog}</td>}
                 {item1?.includes('hdop') && <td>{(item?.value as unknown as { hdop: string | undefined })?.hdop}</td>}
-                {item1?.includes('vdop') && <td>{(item?.value as unknown as { vdop: string | undefined })?.vdop}</td>}
-                {item1?.includes('pdop') && <td>{(item?.value as unknown as { pdop: string | undefined })?.pdop}</td>}
-                {item1?.includes('age') && <td>{(item?.value as unknown as { age: string | undefined })?.age}</td>}
+                {/* {item1?.includes('vdop') && <td>{(item?.value as unknown as { vdop: string | undefined })?.vdop}</td>} */}
+                {/* {item1?.includes('pdop') && <td>{(item?.value as unknown as { pdop: string | undefined })?.pdop}</td>} */}
+                {/* {item1?.includes('age') && <td>{(item?.value as unknown as { age: string | undefined })?.age}</td>} */}
                 {item1?.includes('temp') && <td>{(item?.value as unknown as { temp: string | undefined })?.temp}</td>}
                 {item1?.includes('rh') && <td>{(item?.value as unknown as { rh: string | undefined })?.rh}</td>}
                 {item1?.includes('sPM1') && <td>{(item?.value as unknown as { sPM1: string | undefined })?.sPM1}</td>}
